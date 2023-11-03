@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background: linear-gradient(to right, rgba(80, 204, 49, 0.329), rgba(180, 42, 42, 0.534)); 
+    }
+    #block {
+      
+      margin:auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      width: 290px;
+      height: 600px;
+    }
+
+    #block1 {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 115px;
+      height: auto;
+      font-size: 25px;
+      color: green;
+    }
+    .plus{
+      font-size: 25px;
+      background-color: rgb(255, 255, 255);
+      border-color: green;
+      border-radius: 16px;
+      width: 90px;
+    }
+    .plus:focus{
+      background-color: rgba(0, 238, 0, 0.075);
+    }
+    .plus2{
+      font-size: 25px;
+      border-color: red;
+      background-color: rgb(255, 255, 255);
+      border-radius: 16px;
+      width: 90px;
+    }
+    .plus2:focus{
+      background-color: rgba(238, 0, 0, 0.075);
+    }
+    .minus{
+      font-size: 15px;
+      background-color: rgb(255, 255, 255);
+      border-color: green;
+      border-radius: 16px;
+      width: 90px;
+    }
+    .minus2{
+      font-size: 15px;
+      background-color: rgb(255, 255, 255);
+      border-color: green;
+      border-radius: 16px;
+      width: 90px;
+    }
+    #block2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 115px;
+      height: auto;
+      font-size: 25px;
+      color:red
+    }
+    #sum1{
+      font-size: 30px;
+      
+    }
+    #sum2{
+      font-size: 30px;
+    }
+    #reset{
+      
+      width: 50px;
+      margin: 0 auto;
+    }
+    #resetbuton{
+      background-color: black;
+      color: rgb(255, 255, 255);
+      font-size: 25px;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div id="block">
+    <div id="block1">
+      <span id="player1">Player 1</span>
+     
+      <input type="button" value="+5" class="plus" onclick="plus(5)">
+      <input type="button" value="+10" class="plus" onclick="plus(10)">
+      <input type="button" value="+15" class="plus"onclick="plus(15)">
+      <input type="button" value="+20" class="plus" onclick="plus(20)">
+      <input type="button" value="+25" class="plus"onclick="plus(25)">
+      <input type="button" value="+30" class="plus" onclick="plus(30)">
+    
+      <input type="button" value="-5"  class="minus" onclick="minus(5)">
+      <input type="button" value="-10" class="minus"  onclick="minus(10)">
+      <input type="button" value="-15" class="minus" onclick="minus(15)">
+      <input type="button" value="-20" class="minus"  onclick="minus(20)">
+      <input type="button" value="-25" class="minus" onclick="minus(25)">
+      <input type="button" value="-30" class="minus"  onclick="minus(30)">
+      <span id="sum1">0</span>
+    </div>
+    <br>
+    <div id="block2">
+      <span id="player2">Player 2</span>
+      <input type="button" value="+5" class="plus2" onclick="plus2(5)">
+      <input type="button" value="+10" class="plus2" onclick="plus2(10)">
+      <input type="button" value="+15" class="plus2" onclick="plus2(15)">
+      <input type="button" value="+20" class="plus2" onclick="plus2(20)">
+      <input type="button" value="+25" class="plus2" onclick="plus2(25)">
+      <input type="button" value="+30" class="plus2" onclick="plus2(30)">
+      <input type="button" value="-5"  class="minus2" onclick="minus2(5)">
+      <input type="button" value="-10" class="minus2"  onclick="minus2(10)">
+      <input type="button" value="-15" class="minus2" onclick="minus2(15)">
+      <input type="button" value="-20" class="minus2"  onclick="minus2(20)">
+      <input type="button" value="-25" class="minus2" onclick="minus2(25)">
+      <input type="button" value="-30" class="minus2"  onclick="minus2(30)">
+      <span id="sum2">0</span>
+    </div>
+  </div>
+  <br>
+  
+  <div id="reset"><input type="button" id="resetbuton"value="Reset" onclick="reset()"></div>
+  <br><br><br>
+  <span id="save"></span>
+  <script>
+    /////////////////////////////////
+    var audio= new Audio();
+    audio.src="click.mp3"
+    var sum = 0;
+    //player 1
+    function plus(x) {
+      sum = sum + x;
+      document.getElementById("sum1").innerHTML = sum;
+      var save1=".Player1-->"+x
+      save(save1);
+      audio.play()
+    }
+
+    function minus(x) {
+      sum = sum - x;
+      document.getElementById("sum1").innerHTML = sum;
+      var save1="Player1-->-"+x
+      save(save1);
+      audio.play()
+    }
+    //player 2
+    var sum2 = 0
+
+    function plus2(x) {
+      sum2 = sum2 + x;
+      document.getElementById("sum2").innerHTML = sum2;
+      var save1="Player2-->"+x
+      save(save1);
+      audio.play()
+    }
+
+    function minus2(x) {
+      sum2 = sum2 - x;
+      document.getElementById("sum2").innerHTML = sum2;
+      var save1="Player2-->-"+x
+      save(save1);
+      audio.play()
+    }
+    //Neticeleri sifirlamaq ------!
+    var y="Game play",z=1;
+    function reset() {
+      var confrm = confirm("!!! Results reset ?? ");
+      if (confrm) {
+        sum = 0;
+        document.getElementById("sum1").innerHTML = 0;
+        sum2 = 0;
+        document.getElementById("sum2").innerHTML = 0;
+        alert("Results reset 0")
+        // save -sifirla
+        document.getElementById("save").innerHTML="Game over";
+        y=" "
+        z=1;
+      }
+
+    }
+    
+    x
+    function save(x){
+      console.log(x)
+      y=y+' '+z+')'+"  "+x+"   |  "
+      document.getElementById("save").innerHTML=y;
+      z++;
+      
+
+    }
+  </script>
+</body>
+
+</html>
